@@ -1,5 +1,5 @@
 from graph import *
-
+from math import sin, cos, sqrt, asin
 
 def keyPressed(event):
     global dx, dy, ex, ey
@@ -24,6 +24,10 @@ def keyPressed(event):
     elif event.keycode == VK_SPACE:
         updatemouth() #вызов сатаны (если разкомментишь)
         print("DUUUUUUUUCK")
+        dx = 0; dy = 0
+        ex = 0; ey = 0
+    elif event.keycode == VK_BACK:
+        #movelefthand()  разработке
         dx = 0; dy = 0
         ex = 0; ey = 0
     elif event.keycode == VK_ESCAPE:
@@ -79,7 +83,42 @@ def updatemouth():
     dm += 1
     if dm > 10:
         dm=4
-    return 
+    return
+'''
+don't move something here!
+
+def movelefthand():
+    global lhand, lh, rh, rhand
+    print(lh)
+    x=[0] * 4; y = [0] * 4
+    for i in range(4):
+        x[i], y[i] = lh[i][0], lh[i][1]
+    l = sqrt( (x[1] - x[0])*(x[1] - x[0]) + (y[1] - y[0]) * (y[1] - y[0]) )
+    a = asin( (y[0] - y[1]) / l )
+    print(cos(a))
+    a -= 0.1
+    print(cos(a))
+    xn = x[0] - l * cos(a)
+    yn = y[0] - l * sin(a)
+    x[1], y[1] = xn, yn
+    l = sqrt( (x[3] - x[0])*(x[3] - x[0]) + (y[3] - y[0]) * (y[3] - y[0]) )
+    a = asin( (y[3] - y[0]) / l )
+    a += 0.1
+    xn = x[0] + l * cos(a)
+    yn = y[0] + l * sin(a)
+    x[3], y[3] = xn, yn
+    l = sqrt( (x[2] - x[0])*(x[2] - x[0]) + (y[2] - y[0]) * (y[2] - y[0]) )
+    a = asin( (y[0] - y[2]) / l )
+    a -= 0.1
+    xn = x[0] - l * cos(a)
+    yn = y[0] - l * sin(a)
+    x[2], y[2] = xn, yn
+    deleteObject(lhand)
+    for i in range(4):
+        lh[i] = (x[i],y[i])
+    print(lh)
+    lhand=polygon(lh)
+'''
 dx, dy, ex, ey = 0, 0, 0, 0
 
 
@@ -137,8 +176,10 @@ reye=point(173, 270, "black") #right
 penSize(1)
 penColor("black")
 brushColor(255, 168, 85)
-lhand=polygon([(150, 310), (140, 315), (130, 280), (140, 275)]) #left
-rhand=polygon([(176, 310), (186, 315), (196, 280), (183, 275)]) #right
+lhand = polygon([ (140, 315), (130, 280), (140, 275), (150, 310)]) #left
+lh = [ (140, 315), (130, 280), (140, 275), (150, 310) ]
+rhand = polygon([(176, 310), (186, 315), (196, 280), (183, 275)]) #right
+rh=[(176, 310), (186, 315), (196, 280), (183, 275)]
 
 onKey(keyPressed)
 
