@@ -77,6 +77,8 @@ def updatemouth():
     deleteObject(mouth)
     mouth = circle(x, y, dm + 1, "mouth")
     dm += 1
+    if dm > 10:
+        dm=4
     return 
 dx, dy, ex, ey = 0, 0, 0, 0
 
