@@ -275,7 +275,7 @@ def rectangle(x1, y1, x2, y2):
                       fill = _brushColor)
   return rect
 #----------------------------------
-def circle(x, y, R):
+def circle(x, y, R, tagt):
   x1 = x - R; y1 = y - R
   x2 = x + R; y2 = y + R
   x1, y1 = transformCoord ( x1, y1 )
@@ -283,7 +283,7 @@ def circle(x, y, R):
   circ = _C.create_oval(x1, y1, x2, y2,
                  outline = _penColor,
                  width = _penSize,
-                 fill = _brushColor)
+                 fill = _brushColor, tag = tagt )
   return circ
 #----------------------------------
 def polygon(points):
@@ -461,7 +461,7 @@ if __name__ == "__main__":
   penColor("blue")
   for i in range(100, 0, -10):
     brushColor( randint(0,255),randint(0,255),randint(0,255))
-    circle(300, 100, i)
+    circle(300, 100, i, str(i))
 
   penColor("red")
   for i in range(10, 100, 10):

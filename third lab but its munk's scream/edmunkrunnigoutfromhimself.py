@@ -22,12 +22,14 @@ def keyPressed(event):
         dx = 0; dy = 0
         ex = 5; ey = 0
     elif event.keycode == VK_SPACE:
-        #updatemouth() #вызов сатаны (если разкомментишь)
+        updatemouth() #вызов сатаны (если разкомментишь)
         print("DUUUUUUUUCK")
         dx = 0; dy = 0
         ex = 0; ey = 0
     elif event.keycode == VK_ESCAPE:
         close()
+    else:
+        pass
     updateeyes()
     updateman()
     
@@ -72,8 +74,10 @@ def updateeyes():
 def updatemouth():
     global dm, mouth
     x, y = center(mouth)
-    mouth = circle(x, y, dm + 1)
+    deleteObject(mouth)
+    mouth = circle(x, y, dm + 1, "mouth")
     dm += 1
+    return 
 dx, dy, ex, ey = 0, 0, 0, 0
 
 
@@ -101,8 +105,8 @@ polygon([(10, 5), (265, 500), (273, 500), (15, 0)]) #upper
 #islands
 penColor(230, 171, 67)
 brushColor(230, 171, 67)
-circle(250, 130, 100) #upper
-circle(400, 300, 60)  #lower
+circle(250, 130, 100, "upis") #upper
+circle(400, 300, 60, "loveis")  #lower
 
 #body
 penSize(1)
@@ -113,12 +117,12 @@ body=polygon([(125, 500), (125, 300), (200, 300), (200, 500)])
 #head
 brushColor(255, 168, 85)
 penColor(255, 168, 85)
-head=circle(163, 280, 30)
+head=circle(163, 280, 30, "head")
 
 #mouth
 dm=4
 penColor("black")
-mouth=circle(163, 290, dm)
+mouth=circle(163, 290, dm, "mouth")
 
 
 
