@@ -38,5 +38,5 @@ import task_32
 
 
 if __name__ == '__main__':
-    res = run_tasks(headless=0)
+    res = run_tasks(headless=True)
     sys.exit(0 if res else -1)
