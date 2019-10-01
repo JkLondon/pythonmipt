@@ -26,7 +26,7 @@ def keyPressed(event):
         pass
     move_ghost()
     
-def ellips(xc, yc, a, b, fi=0):
+def ellips(xc, yc, a, b, fi = 0):
     l=[]
     for x in range(-a, a):
         y = ((1 - x**2 / a**2) * b**2) ** (1/2)
@@ -38,8 +38,20 @@ def ellips(xc, yc, a, b, fi=0):
                   (yc - math.sin(fi) * x + math.cos(fi) * (-y))))
     polygon(l)
 
+def ellipse(xc, yc, a1, b1, a2, b2, fi = 0):
+    l=[]
+    for x in range(-a1, a1):
+        y = ((1 - x**2 / a1**2) * b1**2) ** (1/2)
+        l.append((xc + math.cos(fi) * x + math.sin(fi) * y, \
+                  (yc - math.sin(fi) * x + math.cos(fi) * y)))
 
-
+    
+    for x in range(a2, -a2, -1):
+        y = ((1 - x**2 / a2**2) * b2**2) ** (1/2)
+        l.append((xc + math.cos(fi) * x + math.sin(fi) * (-y), \
+                  (yc - math.sin(fi) * x + math.cos(fi) * (-y))))
+    
+    polygon(l)
 
 def move_ghost():
     global x, Dx, Dy, y
@@ -52,8 +64,8 @@ def move_ghost():
     moveObjectBy(eye2, Dx, Dy)
     brushColor('white')
     moveObjectBy(blood, Dx, Dy)
-    x+=Dx
-    y+=Dy
+    x += Dx
+    y += Dy
 
 def windows(r, g, b):
     for i in range(3):
@@ -70,7 +82,7 @@ def turnlights():
         brushColor('gold')
     for i in range(3):
         deleteObject(window[i])
-        window[i]=rectangle(100 + (300 - 210) / 4 + i * ((300 - 210) / 4 + 70), 330, \
+        window[i] = rectangle(100 + (300 - 210) / 4 + i * ((300 - 210) / 4 + 70), 330, \
               100 + (300 - 210) / 4 + i * ((300 - 210)/4 + 70) + 70, 400)
     light = not light 
     ghostrearm()
@@ -98,18 +110,18 @@ def ghostrearm(): #перезагрузка призрака
     else:
         brushColor('red')
         penColor('red')
-    blood=polygon([(x+5,y+1),(x+8,y+1),(x+8,y+11),(x+5,y+11)])
+    blood = polygon([(x+5,y+1),(x+8,y+1),(x+8,y+11),(x+5,y+11)])
     penColor('black')
     return
 
-light=True
+light = True
 width = 600
 height = 600
 Dx = 0
 Dy = 0
-r=20
-g=55
-b=70
+r = 20
+g = 55
+b = 70
 brushColor(r, g, b)
 rectangle (0, 0, width, height)
 
@@ -126,10 +138,10 @@ rectangle(0, 400, 600, 600)
 
 #Moon
 brushColor('light yellow')
-circle(430, 50, 30)
+moon = circle(430, 50, 30)
 brushColor(35, 60, 80)
 penColor(brushColor())
-circle(423, 46, 30)
+ansdmoon = circle(423, 46, 30)
 
 #Stars
 for i in range(300):
@@ -153,10 +165,10 @@ for i in range(20):
 rectangle(100, 200, 400, 205)
 brushColor(40, 20, 0)
 polygon([(70, 200), (320, 130), (430, 200)])
-window=[0]*3
+window = [0]*3
 for i in range(3):
     brushColor('gold')
-    window[i]=rectangle(100 + (300 - 210) / 4 + i * ((300 - 210) / 4 + 70), 330, \
+    window[i] = rectangle(100 + (300 - 210) / 4 + i * ((300 - 210) / 4 + 70), 330, \
               100 + (300 - 210) / 4 + i * ((300 - 210)/4 + 70) + 70, 400)
 
 
@@ -165,7 +177,8 @@ head, body, eye1, eye2, blood = 0, 0, 0, 0, 0
 x = 100
 y = 430
 ghostrearm()
-
+brushColor('pink')
+ellipse(100, 100, 100, 50, 100, 30)
 onKey(keyPressed)
 
 run()
