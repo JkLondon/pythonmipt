@@ -68,7 +68,7 @@ def __initGraph__():
     global _images
     _win = tkinter.Tk()
     _win.configure(bg="white")
-    _win.geometry(str(DEF_GRAPH_WIDTH) + "x" + str(DEF_GRAPH_HEIGHT) + 
+    _win.geometry(str(DEF_GRAPH_WIDTH) + "x" + str(DEF_GRAPH_HEIGHT) +
                   "+100+100")
     _viewPort = None
     _Cw = DEF_GRAPH_WIDTH
@@ -258,7 +258,7 @@ def circle(x, y, R):
     y2 = y + R
     x1, y1 = transformCoord(x1, y1)
     x2, y2 = transformCoord(x2, y2)
-    circ = _C.create_oval(x1, y1, x2, y2, outline=_penColor, 
+    circ = _C.create_oval(x1, y1, x2, y2, outline=_penColor,
                           width=_penSize, fill=_brushColor)
     return circ
 
