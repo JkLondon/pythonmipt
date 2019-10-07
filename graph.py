@@ -73,7 +73,7 @@ def __initGraph__():
     _viewPort = None
     _Cw = DEF_GRAPH_WIDTH
     _Ch = DEF_GRAPH_HEIGHT
-    _C = tkinter.Canvas(_win, background='white', bd=0, highlightthickness=1, 
+    _C = tkinter.Canvas(_win, background='white', bd=0, highlightthickness=1,
                         width=_Cw, height=_Ch)
     _Cpos = [0, 0]
     _C.place(x=_Cpos[0], y=_Cpos[1])
@@ -206,7 +206,7 @@ def lineTo(x, y=-1):
     if type(x) == tuple:
         x, y = x
     x, y = transformCoord(x, y)
-    line = _C.create_line(_pos[0], _pos[1], x, y, fill=_penColor, 
+    line = _C.create_line(_pos[0], _pos[1], x, y, fill=_penColor,
                           width=_penSize)
     _pos = (x, y)
     return line
@@ -246,7 +246,7 @@ def polyline(points):
 def rectangle(x1, y1, x2, y2):
     x1, y1 = transformCoord(x1, y1)
     x2, y2 = transformCoord(x2, y2)
-    rect = _C.create_rectangle(x1, y1, x2, y2, outline=_penColor, 
+    rect = _C.create_rectangle(x1, y1, x2, y2, outline=_penColor,
                                width=_penSize, fill=_brushColor)
     return rect
 
@@ -267,7 +267,7 @@ def polygon(points):
     coord = unpackCoord(points)
     if points[0] != points[-1]:
         points.append(points[0])
-    plg = _C.create_polygon(*coord, outline=_penColor, width=_penSize, 
+    plg = _C.create_polygon(*coord, outline=_penColor, width=_penSize,
                             fill=_brushColor)
     return plg
 
