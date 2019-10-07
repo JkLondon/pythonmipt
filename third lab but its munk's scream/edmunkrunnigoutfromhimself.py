@@ -56,12 +56,12 @@ def keyPressed(event):
 
 def crosstheborder(x, y, blx, bly, bux, buy):
     global dx, dy
-    
+
     if (x - blx)*(buy - bly)-(y - bly)*(bux - blx) >= 0:
         return (-10, 10)
     elif x <= 75:
         return (10, 0)
-    elif y >= 500:          
+    elif y >= 500:
         return (0, -10)
     else:
         return (dx, dy)
@@ -161,7 +161,7 @@ penSize(1)
 penColor("black")
 brushColor(255, 168, 85)
 lhand = polygon([(140, 315), (130, 280), (140, 275), (150, 310)])  # left
-lh = [ (140, 315), (130, 280), (140, 275), (150, 310)]
+lh = [(140, 315), (130, 280), (140, 275), (150, 310)]
 rhand = polygon([(176, 310), (186, 315), (196, 280), (183, 275)])  # right
 rh = [(176, 310), (186, 315), (196, 280), (183, 275)]
 
