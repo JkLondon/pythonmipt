@@ -6,51 +6,7 @@ try:
     from PIL import ImageTk, Image
 except Exception:
     pass
-"""
-GRAPH - модуль для простой графики в Python.
-    (C) К. Поляков, 2017-2018
-    e-mail: kpolyakov@mail.ru
-    web: http://kpolyakov.spb.ru
-    Версия 1.4.1
 
-Модуль graph - это "обертка" над стандартной библиотекой tkinter,
-позволяющая рисовать простыми командами в отдельном графическом окне.
-В ней упрощён доступ ко многим возможностям библиотеки tkinter,
-в то же время сохранена возможность использования всех средств tkinter.
-
-ЛИЦЕНЗИЯ
-
-Copyright (c) 2016-2018, Константин Поляков
-Все права защищены.
-
-Разрешается повторное распространение и использование как в виде исходного
-кода, так и в двоичной форме, с изменениями или без, при соблюдении
-следующих условий:
-    1) При повторном распространении исходного кода должно оставаться указанное
-         выше уведомление об авторском праве, этот список условий и последующий
-         отказ от гарантий.
-    2) При повторном распространении двоичного кода должна сохраняться указанная
-         выше информация об авторском праве, этот список условий и последующий
-         отказ от гарантий в документации и/или в других материалах,
-         поставляемых при распространении.
-    3) Ни название Организации, ни имена ее сотрудников не могут быть
-         использованы в качестве поддержки или продвижения продуктов,
-         основанных на этом ПО без предварительного письменного разрешения.
-
-ДАННОЕ ПРОГРАММНОЕ ОБЕСПЕЧЕНИЕ ПРЕДОСТАВЛЯЕТСЯ «КАК ЕСТЬ», БЕЗ ЛЮБОГО ВИДА
-ГАРАНТИЙ, ЯВНО ВЫРАЖЕННЫХ ИЛИ ПОДРАЗУМЕВАЕМЫХ, ВКЛЮЧАЯ, НО НЕ ОГРАНИЧИВАЯСЬ
-ГАРАНТИЯМИ ТОВАРНОЙ ПРИГОДНОСТИ, СООТВЕТСТВИЯ ПО ЕГО КОНКРЕТНОМУ НАЗНАЧЕНИЮ
-И НЕНАРУШЕНИЯ ПРАВ. НИ В КАКОМ СЛУЧАЕ АВТОРЫ ИЛИ ПРАВООБЛАДАТЕЛИ НЕ НЕСУТ
-ОТВЕТСТВЕННОСТИ ПО ИСКАМ О ВОЗМЕЩЕНИИ УЩЕРБА, УБЫТКОВ ИЛИ ДРУГИХ ТРЕБОВАНИЙ
-ПО ДЕЙСТВУЮЩИМ КОНТРАКТАМ, ДЕЛИКТАМ ИЛИ ИНОМУ, ВОЗНИКШИМ ИЗ, ИМЕЮЩИМ ПРИЧИНОЙ
-ИЛИ СВЯЗАННЫМ С ПРОГРАММНЫМ ОБЕСПЕЧЕНИЕМ ИЛИ ИСПОЛЬЗОВАНИЕМ ПРОГРАММНОГО
-ОБЕСПЕЧЕНИЯ ИЛИ ИНЫМИ ДЕЙСТВИЯМИ С ПРОГРАММНЫМ ОБЕСПЕЧЕНИЕМ.
-"""
-
-"""
-Исходя из http://docs.python.org/3/library/sys.html внесены исправления для
-обеспечения работоспособности в ОС Linux (С. Целищев).
-"""
 
 if platform == "win32" or platform == "cygwin":
     VK_SPACE = 0x20
@@ -112,11 +68,13 @@ def __initGraph__():
     global _images
     _win = tkinter.Tk()
     _win.configure(bg="white")
-    _win.geometry(str(DEF_GRAPH_WIDTH) + "x" + str(DEF_GRAPH_HEIGHT) + "+100+100")
+    _win.geometry(str(DEF_GRAPH_WIDTH) + "x" + str(DEF_GRAPH_HEIGHT) + 
+                  "+100+100")
     _viewPort = None
     _Cw = DEF_GRAPH_WIDTH
     _Ch = DEF_GRAPH_HEIGHT
-    _C = tkinter.Canvas(_win, background='white', bd=0, highlightthickness=1, width=_Cw, height=_Ch)
+    _C = tkinter.Canvas(_win, background='white', bd=0, highlightthickness=1, 
+                        width=_Cw, height=_Ch)
     _Cpos = [0, 0]
     _C.place(x=_Cpos[0], y=_Cpos[1])
     _penColor = "black"
@@ -248,7 +206,8 @@ def lineTo(x, y=-1):
     if type(x) == tuple:
         x, y = x
     x, y = transformCoord(x, y)
-    line = _C.create_line(_pos[0], _pos[1], x, y, fill=_penColor, width=_penSize)
+    line = _C.create_line(_pos[0], _pos[1], x, y, fill=_penColor, 
+                          width=_penSize)
     _pos = (x, y)
     return line
 
@@ -287,7 +246,8 @@ def polyline(points):
 def rectangle(x1, y1, x2, y2):
     x1, y1 = transformCoord(x1, y1)
     x2, y2 = transformCoord(x2, y2)
-    rect = _C.create_rectangle(x1, y1, x2, y2, outline=_penColor, width=_penSize, fill=_brushColor)
+    rect = _C.create_rectangle(x1, y1, x2, y2, outline=_penColor, 
+                               width=_penSize, fill=_brushColor)
     return rect
 
 
@@ -298,7 +258,8 @@ def circle(x, y, R):
     y2 = y + R
     x1, y1 = transformCoord(x1, y1)
     x2, y2 = transformCoord(x2, y2)
-    circ = _C.create_oval(x1, y1, x2, y2, outline=_penColor, width=_penSize, fill=_brushColor)
+    circ = _C.create_oval(x1, y1, x2, y2, outline=_penColor, 
+                          width=_penSize, fill=_brushColor)
     return circ
 
 
@@ -306,7 +267,8 @@ def polygon(points):
     coord = unpackCoord(points)
     if points[0] != points[-1]:
         points.append(points[0])
-    plg = _C.create_polygon(*coord, outline=_penColor, width=_penSize, fill=_brushColor)
+    plg = _C.create_polygon(*coord, outline=_penColor, width=_penSize, 
+                            fill=_brushColor)
     return plg
 
 
