@@ -155,6 +155,9 @@ def spiral():
     sp = g.polyline(points)
 
 
+def bothofthem():
+    ellips()
+    spiral()
 dx, dy, ex, ey = 0, 0, 0, 0
 
 
@@ -197,17 +200,17 @@ g.circle(250, 130, 100)  # upper
 #g.circle(400, 300, 60)  # lower
 
 # spirals
-sp = g.point(350, 280)
-ell = g.point(350, 280)
+
+#ell = g.point(350, 280)
+#sp = g.point(350, 280)
 xc = 350
 yc = 280
 a = 100
 b = 50
 k = 10
 fi = 0
-
-spiral()
-
+sp = 0
+ell = 0
 
 # body
 g.penSize(1)
@@ -240,8 +243,8 @@ rhand = g.polygon([(176, 310), (186, 315), (196, 280), (183, 275)])  # right
 rh = [(176, 310), (186, 315), (196, 280), (183, 275)]
 
 g.onKey(keyPressed)
-g.onTimer(spiral, 10)
-g.onTimer(ellips, 10)
+g.onTimer(bothofthem, 10)
+
 
 
 g.run()
