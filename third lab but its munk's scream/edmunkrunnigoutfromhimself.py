@@ -1,4 +1,6 @@
 import graph as g
+from math import *
+import random
 
 
 def keyPressed(event):
@@ -105,19 +107,81 @@ def updatemouth():
         dm = 4
     return
 
+def ellips1(xc, yc, a, b, fi=0):
+    l=[]
+    for x in range(-a, a):
+        y = ((1 - x**2 / a**2) * b**2) ** (1/2)
+        l.append((xc + cos(fi) * x + sin(fi) * y, \
+                  (yc - sin(fi) * x + cos(fi) * y)))
+    for x in range(a, -a, -1):
+        y = ((1 - x**2 / a**2) * b**2) ** (1/2)
+        l.append((xc + cos(fi) * x + sin(fi) * (-y), \
+                  (yc - sin(fi) * x + cos(fi) * (-y))))
+    g.polygon(l)
 
+
+def ellips():
+    #wanted to do this: ellips(xc1 = xc, yc1 = yc, a1 = a, b1 = b, fi1 = fi)
+    g.brushColor(230, 171, 67)
+    global xc, yc, a, b, fi, ell
+    g.deleteObject(ell)
+    l=[]
+    for x in range(-a, a):
+        y = ((1 - x**2 / a**2) * b**2) ** (1 / 2)
+        l.append((xc + cos(fi) * x + sin(fi) * y, \
+                  (yc - sin(fi) * x + cos(fi) * y)))
+    for x in range(a, -a, -1):
+        y = ((1 - x**2 / a**2) * b**2) ** (1 / 2)
+        l.append((xc + cos(fi) * x + sin(fi) * (-y), \
+                  (yc - sin(fi) * x + cos(fi) * (-y))))
+    ell = g.polygon(l)
+    fi += 0.02
+
+def spiral():
+    global xc, yc, a, b, k, fi, sp
+    g.penColor('black')
+    g.penSize(3)
+    g.deleteObject(sp)
+    r = 5
+    n = 20000
+    points = []
+    for i in range(n):
+        x = (r / 2 * cos(r / k)) * a / b
+        y = r / 2 * sin(r / k)
+        points.append((xc + cos(fi) * x + sin(fi) * y, \
+                  (yc - sin(fi) * x + cos(fi) * y)))
+        r += 0.01
+        
+    sp = g.polyline(points)
+
+
+def bothofthem():
+    ellips()
+    spiral()
 dx, dy, ex, ey = 0, 0, 0, 0
+
+
+# sea
+g.penColor(36, 75, 72)
+g.brushColor(36, 75, 72)
+g.polygon([(0, 0), (0, 500), (500, 500), (500, 0)])
+for i in range(20):
+    g.brushColor(36 + random.randint(0, 20), 75 + i, 72 + i)
+    g.penColor(g.brushColor())
+    l = random.randint(40, 120)
+    x = random.randint(0, 500)
+    y = random.randint(0, 500)
+    ellips1(x, y, l, l/4, -pi / 2 * (500 - x / 3)*(500 - y / 4))
+
+# border
+g.brushColor('black')
+g.rectangle(0, 500, 500, 600)
 
 
 # floor
 g.penColor(140, 129, 46)
 g.brushColor(140, 129, 46)
 g.polygon([(0, 15), (250, 500), (0, 500)])
-
-# sea
-g.penColor(36, 75, 72)
-g.brushColor(36, 75, 72)
-g.polygon([(15, 0), (273, 500), (500, 500), (500, 0)])
 
 # background of fence
 g.polygon([(10, 5), (5, 10), (258, 500), (265, 500)])
@@ -133,7 +197,20 @@ g.polygon([(10, 5), (265, 500), (273, 500), (15, 0)])  # upper
 g.penColor(230, 171, 67)
 g.brushColor(230, 171, 67)
 g.circle(250, 130, 100)  # upper
-g.circle(400, 300, 60)  # lower
+#g.circle(400, 300, 60)  # lower
+
+# spirals
+
+#ell = g.point(350, 280)
+#sp = g.point(350, 280)
+xc = 350
+yc = 280
+a = 100
+b = 50
+k = 10
+fi = 0
+sp = 0
+ell = 0
 
 # body
 g.penSize(1)
@@ -166,5 +243,8 @@ rhand = g.polygon([(176, 310), (186, 315), (196, 280), (183, 275)])  # right
 rh = [(176, 310), (186, 315), (196, 280), (183, 275)]
 
 g.onKey(keyPressed)
+g.onTimer(bothofthem, 10)
+
+
 
 g.run()
