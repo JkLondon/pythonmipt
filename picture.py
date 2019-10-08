@@ -95,7 +95,8 @@ def windows(r, gr, b):
         delta = random.randint(0, 100)
         g.brush_color = g.brushColor(r - delta, gr - delta, b - delta)
         g.rectangle(100 + (300 - 210) / 4 + i * ((300 - 210) / 4 + 70), 330,
-              100 + (300 - 210) / 4 + i * ((300 - 210)/4 + 70) + 70, 400)
+                    100 + (300 - 210) / 4 + i * ((300 - 210) / 4 + 70) +
+                    70, 400)
 
 
 def turnlights():
@@ -114,7 +115,7 @@ def turnlights():
     return
 
 
-def ghostrearm(): #перезагрузка призрака
+def ghostrearm():  #перезагрузка призрака
     global head, body, eye1, eye2, x, y, blood, light
     g.deleteObject(head)
     g.deleteObject(eye1)
@@ -136,7 +137,8 @@ def ghostrearm(): #перезагрузка призрака
     else:
         g.brushColor('red')
         g.penColor('red')
-    blood = g.polygon([(x+5,y+1),(x+8,y+1),(x+8,y+11),(x+5,y+11)])
+    blood = g.polygon([(x + 5, y + 1),(x + 8, y + 1),(x + 8, y + 11),
+                       (x + 5, y + 11)])
     g.penColor('black')
     return
 
@@ -189,6 +191,7 @@ moon = ellipse(430, 50, 50, 50, 50, 50, math.pi/2)
 g.brushColor(35, 60, 80)
 g.penColor(g.brushColor())
 tobase()
+
 #Stars
 for i in range(300):
     g.point(random.randint(0, 600), random.randint(0, 400), 'white')
@@ -207,11 +210,11 @@ g.rectangle(100, 200, 400, 500)
 g.brushColor(100, 70, 50)
 g.rectangle(100, 270, 400, 285)
 for i in range(20):
-    g.rectangle(100 + i*15, 200, i*15 + 110, 270)
+    g.rectangle(100 + i * 15, 200, i * 15 + 110, 270)
 g.rectangle(100, 200, 400, 205)
 g.brushColor(40, 20, 0)
 g.polygon([(70, 200), (320, 130), (430, 200)])
-window = [0]*3
+window = [0] * 3
 for i in range(3):
     g.brushColor('gold')
     window[i] = g.rectangle(100 + (300 - 210) / 4 + i * ((300 - 210) / 4 + 70), 330, \
