@@ -27,52 +27,53 @@ def keyPressed(event):
         pass
     move_ghost()
 
- 
-def ellips(xc, yc, a, b, fi = 0):
+
+def ellips(xc, yc, a, b, fi=0):
     L = []
     for x in range(-a, a):
         y = ((1 - x**2 / a**2) * b**2) ** (1/2)
-        L.append((xc + math.cos(fi) * x + math.sin(fi) * y, \
+        L.append((xc + math.cos(fi) * x + math.sin(fi) * y,
                   (yc - math.sin(fi) * x + math.cos(fi) * y)))
     for x in range(a, -a, -1):
         y = ((1 - x**2 / a**2) * b**2) ** (1/2)
-        L.append((xc + math.cos(fi) * x + math.sin(fi) * (-y), \
+        L.append((xc + math.cos(fi) * x + math.sin(fi) * (-y),
                   (yc - math.sin(fi) * x + math.cos(fi) * (-y))))
     g.polygon(L)
 
 
-def ellipse(xc, yc, a1, b1, a2, b2, fi = 0):
+def ellipse(xc, yc, a1, b1, a2, b2, fi=0):
     L = []
     if b1 < 0:
         for x in range(-a1, a1, 1):
             y = ((1 - x**2 / a2**2) * b1**2) ** (1/2)
-            L.append((xc + math.cos(fi) * x + math.sin(fi) * (-y), \
+            L.append((xc + math.cos(fi) * x + math.sin(fi) * (-y),
                       (yc - math.sin(fi) * x + math.cos(fi) * (-y))))
         for x in range(a2, -a2, -1):
             y = ((1 - x**2 / a2**2) * b2**2) ** (1/2)
-            L.append((xc + math.cos(fi) * x + math.sin(fi) * (-y), \
+            L.append((xc + math.cos(fi) * x + math.sin(fi) * (-y),
                       (yc - math.sin(fi) * x + math.cos(fi) * (-y))))
     elif b2 < 0:
         for x in range(a1, -a1, -1):
             y = ((1 - x**2 / a1**2) * b1**2) ** (1/2)
-            L.append((xc + math.cos(fi) * x + math.sin(fi) * y, \
+            L.append((xc + math.cos(fi) * x + math.sin(fi) * y,
                       (yc - math.sin(fi) * x + math.cos(fi) * y)))
         for x in range(-a2, a2):
             y = ((1 - x**2 / a2**2) * b2**2) ** (1/2)
-            L.append((xc + math.cos(fi) * x + math.sin(fi) * y, \
+            L.append((xc + math.cos(fi) * x + math.sin(fi) * y,
                       (yc - math.sin(fi) * x + math.cos(fi) * y)))
     else:
         for x in range(a1, -a1, -1):
             y = ((1 - x**2 / a1**2) * b1**2) ** (1/2)
-            L.append((xc + math.cos(fi) * x + math.sin(fi) * y, \
+            L.append((xc + math.cos(fi) * x + math.sin(fi) * y,
                       (yc - math.sin(fi) * x + math.cos(fi) * y)))
         for x in range(-a2, a2):
             y = ((1 - x**2 / a2**2) * b2**2) ** (1/2)
-            L.append((xc + math.cos(fi) * x + math.sin(fi) * (-y), \
+            L.append((xc + math.cos(fi) * x + math.sin(fi) * (-y),
                       (yc - math.sin(fi) * x + math.cos(fi) * (-y))))
     g.brushColor('light yellow')
     g.penColor('black')
     return g.polygon(L)
+
 
 def move_ghost():
     global x, Dx, Dy, y
@@ -88,12 +89,14 @@ def move_ghost():
     x += Dx
     y += Dy
 
+
 def windows(r, gr, b):
     for i in range(3):
         delta = random.randint(0, 100)
         g.brush_color = g.brushColor(r - delta, gr - delta, b - delta)
-        g.rectangle(100 + (300 - 210) / 4 + i * ((300 - 210) / 4 + 70), 330, \
+        g.rectangle(100 + (300 - 210) / 4 + i * ((300 - 210) / 4 + 70), 330,
               100 + (300 - 210) / 4 + i * ((300 - 210)/4 + 70) + 70, 400)
+
 
 def turnlights():
     global window, light
@@ -109,6 +112,7 @@ def turnlights():
     light = not light 
     ghostrearm()
     return
+
 
 def ghostrearm(): #перезагрузка призрака
     global head, body, eye1, eye2, x, y, blood, light
