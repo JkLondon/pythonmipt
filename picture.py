@@ -94,9 +94,11 @@ def windows(r, gr, b):
     for i in range(3):
         delta = random.randint(0, 100)
         g.brush_color = g.brushColor(r - delta, gr - delta, b - delta)
-        g.rectangle(100 + (300 - 210) / 4 + i * ((300 - 210) / 4 + 70), 330,
-                    100 + (300 - 210) / 4 + i * ((300 - 210) / 4 + 70) +
-                    70, 400)
+        g.rectangle(
+            100 + (300 - 210) / 4 + i * ((300 - 210) / 4 + 70), 330,
+            100 + (300 - 210) / 4 + i * ((300 - 210) / 4 + 70) +
+            70, 400
+                    )
 
 
 def turnlights():
@@ -107,9 +109,11 @@ def turnlights():
         g.brushColor('gold')
     for i in range(3):
         g.deleteObject(window[i])
-        window[i] = g.rectangle(100 + (300 - 210) / 4 + i * ((300 - 210) / 4 +
-                                70), 330, 100 + (300 - 210) / 4 + i * ((300 -
-                                210)/4 + 70) + 70, 400)
+        window[i] = g.rectangle(
+            100 + (300 - 210) / 4 + i * ((300 - 210) / 4 +
+            70), 330, 100 + (300 - 210) / 4 + i * ((300 -
+            210)/4 + 70) + 70, 400
+                                )
     light = not light 
     ghostrearm()
     return
@@ -124,8 +128,10 @@ def ghostrearm():  # перезагрузка призрака
     g.deleteObject(blood)
     g.brushColor('lightgray')
     head = g.circle(x, y, 30)
-    body = g.polygon([(x - 60, y + 50), (x - 30, y), (x + 30, y),
-                     (x + 60, y + 50)])
+    body = g.polygon(
+        [(x - 60, y + 50), (x - 30, y), (x + 30, y),
+        (x + 60, y + 50)]
+                     )
     if light:
         g.brushColor('black')
     else:
