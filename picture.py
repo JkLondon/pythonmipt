@@ -1,7 +1,7 @@
 import graph as g
-import time
 import random
 import math
+
 
 def keyPressed(event):
     global Dx, Dy, light
@@ -26,51 +26,53 @@ def keyPressed(event):
     else:
         pass
     move_ghost()
-    
+
+ 
 def ellips(xc, yc, a, b, fi = 0):
-    l=[]
+    L = []
     for x in range(-a, a):
         y = ((1 - x**2 / a**2) * b**2) ** (1/2)
-        l.append((xc + math.cos(fi) * x + math.sin(fi) * y, \
+        L.append((xc + math.cos(fi) * x + math.sin(fi) * y, \
                   (yc - math.sin(fi) * x + math.cos(fi) * y)))
     for x in range(a, -a, -1):
         y = ((1 - x**2 / a**2) * b**2) ** (1/2)
-        l.append((xc + math.cos(fi) * x + math.sin(fi) * (-y), \
+        L.append((xc + math.cos(fi) * x + math.sin(fi) * (-y), \
                   (yc - math.sin(fi) * x + math.cos(fi) * (-y))))
-    g.polygon(l)
+    g.polygon(L)
+
 
 def ellipse(xc, yc, a1, b1, a2, b2, fi = 0):
-    l=[]
+    L = []
     if b1 < 0:
         for x in range(-a1, a1, 1):
             y = ((1 - x**2 / a2**2) * b1**2) ** (1/2)
-            l.append((xc + math.cos(fi) * x + math.sin(fi) * (-y), \
+            L.append((xc + math.cos(fi) * x + math.sin(fi) * (-y), \
                       (yc - math.sin(fi) * x + math.cos(fi) * (-y))))
         for x in range(a2, -a2, -1):
             y = ((1 - x**2 / a2**2) * b2**2) ** (1/2)
-            l.append((xc + math.cos(fi) * x + math.sin(fi) * (-y), \
+            L.append((xc + math.cos(fi) * x + math.sin(fi) * (-y), \
                       (yc - math.sin(fi) * x + math.cos(fi) * (-y))))
     elif b2 < 0:
         for x in range(a1, -a1, -1):
             y = ((1 - x**2 / a1**2) * b1**2) ** (1/2)
-            l.append((xc + math.cos(fi) * x + math.sin(fi) * y, \
+            L.append((xc + math.cos(fi) * x + math.sin(fi) * y, \
                       (yc - math.sin(fi) * x + math.cos(fi) * y)))
         for x in range(-a2, a2):
             y = ((1 - x**2 / a2**2) * b2**2) ** (1/2)
-            l.append((xc + math.cos(fi) * x + math.sin(fi) * y, \
+            L.append((xc + math.cos(fi) * x + math.sin(fi) * y, \
                       (yc - math.sin(fi) * x + math.cos(fi) * y)))
     else:
         for x in range(a1, -a1, -1):
             y = ((1 - x**2 / a1**2) * b1**2) ** (1/2)
-            l.append((xc + math.cos(fi) * x + math.sin(fi) * y, \
+            L.append((xc + math.cos(fi) * x + math.sin(fi) * y, \
                       (yc - math.sin(fi) * x + math.cos(fi) * y)))
         for x in range(-a2, a2):
             y = ((1 - x**2 / a2**2) * b2**2) ** (1/2)
-            l.append((xc + math.cos(fi) * x + math.sin(fi) * (-y), \
+            L.append((xc + math.cos(fi) * x + math.sin(fi) * (-y), \
                       (yc - math.sin(fi) * x + math.cos(fi) * (-y))))
     g.brushColor('light yellow')
     g.penColor('black')
-    return g.polygon(l)
+    return g.polygon(L)
 
 def move_ghost():
     global x, Dx, Dy, y
