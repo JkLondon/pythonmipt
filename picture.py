@@ -115,7 +115,7 @@ def turnlights():
     return
 
 
-def ghostrearm():  #перезагрузка призрака
+def ghostrearm():  # перезагрузка призрака
     global head, body, eye1, eye2, x, y, blood, light
     g.deleteObject(head)
     g.deleteObject(eye1)
@@ -124,7 +124,8 @@ def ghostrearm():  #перезагрузка призрака
     g.deleteObject(blood)
     g.brushColor('lightgray')
     head = g.circle(x, y, 30)
-    body = g.polygon([(x - 60, y + 50), (x - 30, y), (x + 30, y), (x + 60, y + 50)])
+    body = g.polygon([(x - 60, y + 50), (x - 30, y), (x + 30, y),
+                     (x + 60, y + 50)])
     if light:
         g.brushColor('black')
     else:
@@ -173,7 +174,7 @@ b2 = 50
 g.brushColor(r, gr, b)
 g.rectangle (0, 0, width, height)
 
-#Gradient
+# Gradient
 for i in range(height):
     g.penColor(r, gr, b)
     g.line(0, i, 600, i)
@@ -184,7 +185,7 @@ for i in range(height):
 g.brushColor(35, 25, 15)
 g.rectangle(0, 400, 600, 600)
 
-#Moon
+# Moon
 g.brushColor('light yellow')
 g.penColor('light yellow')
 moon = ellipse(430, 50, 50, 50, 50, 50, math.pi/2)
@@ -192,18 +193,18 @@ g.brushColor(35, 60, 80)
 g.penColor(g.brushColor())
 tobase()
 
-#Stars
+# Stars
 for i in range(300):
     g.point(random.randint(0, 600), random.randint(0, 400), 'white')
 
-#Clouds
+# Clouds
 for i in range(10):
-    g.brushColor(115 + i, 100 + 2*i, 145 + 2*i)
+    g.brushColor(115 + i, 100 + 2 * i, 145 + 2 * i)
     g.penColor(g.brushColor())
     l = random.randint(40, 120)
-    ellips(random.randint(0, 500), random.randint(0, 350), l, l/4)
+    ellips(random.randint(0, 500), random.randint(0, 350), l, l / 4)
 
-#House
+# House
 g.penColor('black')
 g.brushColor(37, 30, 20)
 g.rectangle(100, 200, 400, 500)
@@ -218,20 +219,15 @@ window = [0] * 3
 for i in range(3):
     g.brushColor('gold')
     window[i] = g.rectangle(100 + (300 - 210) / 4 + i * ((300 - 210) / 4 + 70), 330, \
-              100 + (300 - 210) / 4 + i * ((300 - 210)/4 + 70) + 70, 400)
+                            100 + (300 - 210) / 4 + i * ((300 - 210)/4 + 70)
+                            + 70, 400)
 
 
-#Ghost
+# Ghost
 head, body, eye1, eye2, blood = 0, 0, 0, 0, 0
 x = 100
 y = 430
 ghostrearm()
 g.onTimer(updmoon, 100)
 g.onKey(keyPressed)
-
 g.run()
-
-
-
-
-
