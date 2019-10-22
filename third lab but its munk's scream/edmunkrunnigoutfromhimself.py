@@ -1,5 +1,5 @@
 import graph as g
-from math import *
+import math as m
 import random
 
 
@@ -59,7 +59,7 @@ def keyPressed(event):
 def crosstheborder(x, y, blx, bly, bux, buy):
     global dx, dy
 
-    if (x - blx)*(buy - bly)-(y - bly)*(bux - blx) >= 0:
+    if (x - blx) * (buy - bly) - (y - bly) * (bux - blx) >= 0:
         return (-10, 10)
     elif x <= 75:
         return (10, 0)
@@ -111,12 +111,12 @@ def ellips1(xc, yc, a, b, fi=0):
     l=[]
     for x in range(-a, a):
         y = ((1 - x**2 / a**2) * b**2) ** (1/2)
-        l.append((xc + cos(fi) * x + sin(fi) * y, \
-                  (yc - sin(fi) * x + cos(fi) * y)))
+        l.append((xc + m.cos(fi) * x + m.sin(fi) * y, \
+                  (yc - m.sin(fi) * x + m.cos(fi) * y)))
     for x in range(a, -a, -1):
         y = ((1 - x**2 / a**2) * b**2) ** (1/2)
-        l.append((xc + cos(fi) * x + sin(fi) * (-y), \
-                  (yc - sin(fi) * x + cos(fi) * (-y))))
+        l.append((xc + m.cos(fi) * x + m.sin(fi) * (-y), \
+                  (yc - m.sin(fi) * x + m.cos(fi) * (-y))))
     g.polygon(l)
 
 
@@ -128,12 +128,12 @@ def ellips():
     l=[]
     for x in range(-a, a):
         y = ((1 - x**2 / a**2) * b**2) ** (1 / 2)
-        l.append((xc + cos(fi) * x + sin(fi) * y, \
-                  (yc - sin(fi) * x + cos(fi) * y)))
+        l.append((xc + m.cos(fi) * x + m.sin(fi) * y, \
+                  (yc - m.sin(fi) * x + m.cos(fi) * y)))
     for x in range(a, -a, -1):
         y = ((1 - x**2 / a**2) * b**2) ** (1 / 2)
-        l.append((xc + cos(fi) * x + sin(fi) * (-y), \
-                  (yc - sin(fi) * x + cos(fi) * (-y))))
+        l.append((xc + m.cos(fi) * x + m.sin(fi) * (-y), \
+                  (yc - m.sin(fi) * x + m.cos(fi) * (-y))))
     ell = g.polygon(l)
     fi += 0.02
 
@@ -146,10 +146,10 @@ def spiral():
     n = 20000
     points = []
     for i in range(n):
-        x = (r / 2 * cos(r / k)) * a / b
-        y = r / 2 * sin(r / k)
-        points.append((xc + cos(fi) * x + sin(fi) * y, \
-                  (yc - sin(fi) * x + cos(fi) * y)))
+        x = (r / 2 * m.cos(r / k)) * a / b
+        y = r / 2 * m.sin(r / k)
+        points.append((xc + m.cos(fi) * x + m.sin(fi) * y, \
+                  (yc - m.sin(fi) * x + m.cos(fi) * y)))
         r += 0.01
         
     sp = g.polyline(points)
@@ -171,7 +171,7 @@ for i in range(20):
     l = random.randint(40, 120)
     x = random.randint(0, 500)
     y = random.randint(0, 500)
-    ellips1(x, y, l, l/4, -pi / 2 * (500 - x / 3)*(500 - y / 4))
+    ellips1(x, y, l, l/4, -m.pi / 2 * (500 - x / 3)*(500 - y / 4))
 
 # border
 g.brushColor('black')
