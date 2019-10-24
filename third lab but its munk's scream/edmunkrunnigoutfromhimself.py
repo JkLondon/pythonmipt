@@ -125,17 +125,18 @@ def ellips():
     g.brushColor(230, 171, 67)
     global xc, yc, a, b, fi, ell
     g.deleteObject(ell)
-    l=[]
+    L = []
     for x in range(-a, a):
         y = ((1 - x**2 / a**2) * b**2) ** (1 / 2)
-        l.append((xc + m.cos(fi) * x + m.sin(fi) * y, \
+            L.append((xc + m.cos(fi) * x + m.sin(fi) * y,
                   (yc - m.sin(fi) * x + m.cos(fi) * y)))
     for x in range(a, -a, -1):
         y = ((1 - x**2 / a**2) * b**2) ** (1 / 2)
-        l.append((xc + m.cos(fi) * x + m.sin(fi) * (-y), \
+        L.append((xc + m.cos(fi) * x + m.sin(fi) * (-y),
                   (yc - m.sin(fi) * x + m.cos(fi) * (-y))))
-    ell = g.polygon(l)
+    ell = g.polygon(L)
     fi += 0.02
+
 
 def spiral():
     global xc, yc, a, b, k, fi, sp
@@ -148,16 +149,17 @@ def spiral():
     for i in range(n):
         x = (r / 2 * m.cos(r / k)) * a / b
         y = r / 2 * m.sin(r / k)
-        points.append((xc + m.cos(fi) * x + m.sin(fi) * y, \
+        points.append((xc + m.cos(fi) * x + m.sin(fi) * y,
                   (yc - m.sin(fi) * x + m.cos(fi) * y)))
         r += 0.01
-        
     sp = g.polyline(points)
 
 
 def bothofthem():
     ellips()
     spiral()
+
+
 dx, dy, ex, ey = 0, 0, 0, 0
 
 
@@ -168,10 +170,10 @@ g.polygon([(0, 0), (0, 500), (500, 500), (500, 0)])
 for i in range(20):
     g.brushColor(36 + random.randint(0, 20), 75 + i, 72 + i)
     g.penColor(g.brushColor())
-    l = random.randint(40, 120)
+    L = random.randint(40, 120)
     x = random.randint(0, 500)
     y = random.randint(0, 500)
-    ellips1(x, y, l, l/4, -m.pi / 2 * (500 - x / 3)*(500 - y / 4))
+    ellips1(x, y, L, l/4, -m.pi / 2 * (500 - x / 3)*(500 - y / 4))
 
 # border
 g.brushColor('black')
@@ -244,7 +246,4 @@ rh = [(176, 310), (186, 315), (196, 280), (183, 275)]
 
 g.onKey(keyPressed)
 g.onTimer(bothofthem, 10)
-
-
-
 g.run()
