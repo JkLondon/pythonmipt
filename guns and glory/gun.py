@@ -47,7 +47,7 @@ class ball():
         canv.delete(self.id)
         self.id = canv.create_oval(self.x - self.r, self.y - self.r,
                                    self.x + self.r, self.y + self.r,
-                                   fill = self.color)
+                                   fill=self.color)
         if self.y + self.r > 600:
             self.vy *= -1
             zy = abs(self.vy) / self.vy
@@ -63,19 +63,20 @@ class ball():
         elif self.x - self.r < 0:
             self.x = self.r
 
-    
     def hittest(self, obj):
         if m.sqrt((self.x - obj.x) ** 2 +
                   (self.y - obj.y) ** 2) > self.r + obj.r:
             return False
         else:
             return True
+
+
 class gun():
     def __init__(self):
         self.f2_power = 10
         self.f2_on = 0
         self.an = 1
-        self.id = canv.create_line(20, 450, 50, 420, width = 7) 
+        self.id = canv.create_line(20, 450, 50, 420, width=7)
 
     def fire2_start(self, event):
         self.f2_on = 1
@@ -121,14 +122,18 @@ class gun():
         else:
             canv.itemconfig(self.id, fill='black')
 
-id_points = canv.create_text(30, 30, text = 0, font = '28')
+
+id_points = canv.create_text(30, 30, text=0, font='28')
 points = 0
-class target():    
+
+
+class target():
     def __init__(self):
         self.live = 1
         self.id = 0
         self.vx = 0
         self.vy = 0
+
     def new_target(self, x):
         """ Инициализация новой цели. """
         self.x = x
@@ -138,15 +143,16 @@ class target():
         self.live = 1
         color = self.color = 'red'
         canv.coords(self.id, x - r, y - r, x + r, y + r)
-        canv.itemconfig(self.id, fill = color)
+        canv.itemconfig(self.id, fill=color)
         canv.delete(self.id)
         self.id = canv.create_oval(
                 self.x - self.r,
                 self.y - self.r,
                 self.x + self.r,
                 self.y + self.r,
-                fill = self.color
+                fill=self.color
         )
+
     def move(self):
         self.y -= self.vy
         canv.delete(self.id)
@@ -155,7 +161,7 @@ class target():
                 self.y - self.r,
                 self.x + self.r,
                 self.y + self.r,
-                fill = self.color
+                fill=self.color
         )
         if self.y + self.r > 600 or self.y - self.r < 0:
             self.vy *= -1
@@ -163,11 +169,12 @@ class target():
             self.y = 600 - self.r
         elif self.y - self.r < 0:
             self.y = self.r
+
     def hit(self):
         global id_points, points
         canv.coords(self.id, -10, -10, -10, -10)
         points += 1
-        canv.itemconfig(id_points, text = points)
+        canv.itemconfig(id_points, text=points)
         
 
 t = [None] * 2
