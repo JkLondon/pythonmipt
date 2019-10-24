@@ -1,6 +1,6 @@
 from random import randrange as rnd, choice
 import tkinter as tk
-import math as m 
+import math as m
 import time
 import datetime as dt
 
@@ -39,14 +39,8 @@ class ball():
                 self.x + self.r,
                 self.y + self.r
         )
-    
-    def move(self):
-        """Переместить мяч по прошествии единицы времени.
 
-        Метод описывает перемещение мяча за один кадр перерисовки. То есть, обновляет значения
-        self.x и self.y с учетом скоростей self.vx и self.vy, силы гравитации, действующей на мяч,
-        и стен по краям окна (размер окна 800х600).
-        """
+    def move(self):
         self.vy -= 1
         self.x += self.vx
         self.y -= self.vy
