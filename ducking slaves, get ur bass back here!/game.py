@@ -123,11 +123,11 @@ def collision(i,j):
     delt = coors[i][2] + coors[j][2] - m.sqrt((c1x - c2x) ** 2 + (c1y - c2y)
                                               ** 2)
     if c2y != c1y:
-        coors[i][1] += (delt+1) * m.sin(fi) * (c1y - c2y) / abs(c1y - c2y) / 2        
-        coors[j][1] -= (delt+1) * m.sin(fi) * (c1y - c2y) / abs(c1y - c2y) / 2
+        coors[i][1] += delt * m.sin(fi) * (c1y - c2y) / abs(c1y - c2y) / 2        
+        coors[j][1] -= delt * m.sin(fi) * (c1y - c2y) / abs(c1y - c2y) / 2
     if c1x != c2x:
-        coors[i][0] += (delt+1) * m.cos(fi) * (c1x - c2x) / abs(c1x - c2x) / 2
-        coors[j][0] -= (delt+1) * m.cos(fi) * (c1x - c2x) / abs(c1x - c2x) / 2
+        coors[i][0] += delt * m.cos(fi) * (c1x - c2x) / abs(c1x - c2x) / 2
+        coors[j][0] -= delt * m.cos(fi) * (c1x - c2x) / abs(c1x - c2x) / 2
 
 
 def crosstheborder(i):
@@ -137,7 +137,7 @@ def crosstheborder(i):
             angle[i] = (180 - abs(angle[i])) * (-1)
         else:
             angle[i] = 180 - angle[i]
-        coors[i][0] = 800 - coors[i][2] - 5
+        coors[i][0] = 800 - coors[i][2]
     elif coors[i][0] - coors[i][2] < 0:
         if angle[i] < 0:
             angle[i] = (180 - abs(angle[i])) * (-1)
@@ -146,7 +146,7 @@ def crosstheborder(i):
         coors[i][0] = coors[i][2] + 5
     elif coors[i][1] + coors[i][2] > 580:
         angle[i] *= -1
-        coors[i][1] = 580 - coors[i][2] - 5
+        coors[i][1] = 580 - coors[i][2]
     elif coors[i][1] - coors[i][2] < 0:
         angle[i] *= -1
         coors[i][1] = coors[i][2] + 5
