@@ -45,14 +45,9 @@ class ball():
         self.x += self.vx
         self.y -= self.vy
         canv.delete(self.id)
-        self.id = canv.create_oval(
-                self.x - self.r,
-                self.y - self.r,
-                self.x + self.r,
-                self.y + self.r,
-                fill = self.color
-        )
-        ''' or self.y - self.r < 0''' 
+        self.id = canv.create_oval(self.x - self.r, self.y - self.r,
+                                   self.x + self.r, self.y + self.r,
+                                   fill = self.color)
         if self.y + self.r > 600:
             self.vy *= -1
             zy = abs(self.vy) / self.vy
@@ -63,10 +58,6 @@ class ball():
             self.vx = (abs(self.vx) - 1) * zx
         if self.y + self.r > 600:
             self.y = 600 - self.r
-        '''
-        if self.y - self.r < 0:
-            self.y = self.r
-        '''
         if self.x + self.r > 800:
             self.x = 800 - self.r
         elif self.x - self.r < 0:
@@ -74,14 +65,8 @@ class ball():
 
     
     def hittest(self, obj):
-        """Функция проверяет сталкивалкивается ли данный обьект с целью, описываемой в обьекте obj.
-
-        Args:
-            obj: Обьект, с которым проверяется столкновение.
-        Returns:
-            Возвращает True в случае столкновения мяча и цели. В противном случае возвращает False.
-        """
-        if m.sqrt((self.x - obj.x) ** 2 + (self.y - obj.y) ** 2) > self.r + obj.r:
+        if m.sqrt((self.x - obj.x) ** 2 +
+                  (self.y - obj.y) ** 2) > self.r + obj.r:
             return False
         else:
             return True
@@ -90,17 +75,12 @@ class gun():
         self.f2_power = 10
         self.f2_on = 0
         self.an = 1
-        self.id = canv.create_line(20, 450, 50, 420, width = 7) # FIXME: don't know how to set it...
+        self.id = canv.create_line(20, 450, 50, 420, width = 7) 
 
     def fire2_start(self, event):
         self.f2_on = 1
 
     def fire2_end(self, event):
-        """Выстрел мячом.
-
-        Происходит при отпускании кнопки мыши.
-        Начальные значения компонент скорости мяча vx и vy зависят от положения мыши.
-        """
         global balls, bullet
         bullet += 1
         new_ball = ball()
@@ -141,11 +121,9 @@ class gun():
         else:
             canv.itemconfig(self.id, fill='black')
 
-id_points = canv.create_text(30,30,text = 0,font = '28')
+id_points = canv.create_text(30, 30, text = 0, font = '28')
 points = 0
-class target():
-    global id_points, points
-    
+class target():    
     def __init__(self):
         self.live = 1
         self.id = 0
@@ -186,8 +164,7 @@ class target():
         elif self.y - self.r < 0:
             self.y = self.r
     def hit(self):
-        global points
-        """Попадание шарика в цель."""
+        global id_points, points
         canv.coords(self.id, -10, -10, -10, -10)
         points += 1
         canv.itemconfig(id_points, text = points)
@@ -199,6 +176,7 @@ g1 = gun()
 bullet = 0
 balls = []
 lives = 0
+
 
 def new_game(event=''):
     global g1, t, screen1, balls, bullet, lives
@@ -231,7 +209,6 @@ def new_game(event=''):
                         canv.delete(t[i].id)
                         b.live = 0
                         lives -= 1
-                        
         canv.update()
         time.sleep(zzz)
         g1.targetting()
@@ -245,16 +222,14 @@ def new_game(event=''):
     canv.bind('<ButtonRelease-1>', '')
     canv.itemconfig(screen1, text='Вы уничтожили 2 цели за ' +
                     str(bullet) + ' выстрелов')
-    while (dt.datetime.now() - tx).seconds <  delta:
+    while (dt.datetime.now() - tx).seconds < delta:
         canv.update()
         time.sleep(zzz)
         g1.targetting()
         g1.power_up()
-    
     canv.itemconfig(screen1, text='')
     root.after(1, new_game)
 
 
 new_game()
-
 tk.mainloop()
