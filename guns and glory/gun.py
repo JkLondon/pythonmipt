@@ -139,7 +139,8 @@ class target():
         self.x = x
         y = self.y = rnd(300, 550)
         r = self.r = rnd(10, 50)
-        vy = self.vy = rnd (2,5)
+        vy = self.vy = rnd(2, 5)
+        y = y - vy + vy
         self.live = 1
         color = self.color = 'red'
         canv.coords(self.id, x - r, y - r, x + r, y + r)
@@ -175,7 +176,7 @@ class target():
         canv.coords(self.id, -10, -10, -10, -10)
         points += 1
         canv.itemconfig(id_points, text=points)
-        
+
 
 t = [None] * 2
 screen1 = canv.create_text(400, 300, text='', font='28')
@@ -224,7 +225,7 @@ def new_game(event=''):
         canv.delete(i.id)
     balls = []
     tx = dt.datetime.now()
-    delta =  1
+    delta = 1
     canv.bind('<Button-1>', '')
     canv.bind('<ButtonRelease-1>', '')
     canv.itemconfig(screen1, text='Вы уничтожили 2 цели за ' +

@@ -107,21 +107,21 @@ def updatemouth():
         dm = 4
     return
 
+
 def ellips1(xc, yc, a, b, fi=0):
-    l=[]
+    L = []
     for x in range(-a, a):
         y = ((1 - x**2 / a**2) * b**2) ** (1/2)
-        l.append((xc + m.cos(fi) * x + m.sin(fi) * y, \
+        L.append((xc + m.cos(fi) * x + m.sin(fi) * y,
                   (yc - m.sin(fi) * x + m.cos(fi) * y)))
     for x in range(a, -a, -1):
         y = ((1 - x**2 / a**2) * b**2) ** (1/2)
-        l.append((xc + m.cos(fi) * x + m.sin(fi) * (-y), \
+        L.append((xc + m.cos(fi) * x + m.sin(fi) * (-y),
                   (yc - m.sin(fi) * x + m.cos(fi) * (-y))))
-    g.polygon(l)
+    g.polygon(L)
 
 
 def ellips():
-    #wanted to do this: ellips(xc1 = xc, yc1 = yc, a1 = a, b1 = b, fi1 = fi)
     g.brushColor(230, 171, 67)
     global xc, yc, a, b, fi, ell
     g.deleteObject(ell)
@@ -197,12 +197,12 @@ g.polygon([(10, 5), (265, 500), (273, 500), (15, 0)])  # upper
 g.penColor(230, 171, 67)
 g.brushColor(230, 171, 67)
 g.circle(250, 130, 100)  # upper
-#g.circle(400, 300, 60)  # lower
+# g.circle(400, 300, 60)  # lower
 
 # spirals
 
-#ell = g.point(350, 280)
-#sp = g.point(350, 280)
+# ell = g.point(350, 280)
+# sp = g.point(350, 280)
 xc = 350
 yc = 280
 a = 100
