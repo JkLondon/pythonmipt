@@ -128,7 +128,7 @@ def ellips():
     L = []
     for x in range(-a, a):
         y = ((1 - x**2 / a**2) * b**2) ** (1 / 2)
-            L.append((xc + m.cos(fi) * x + m.sin(fi) * y,
+        L.append((xc + m.cos(fi) * x + m.sin(fi) * y,
                   (yc - m.sin(fi) * x + m.cos(fi) * y)))
     for x in range(a, -a, -1):
         y = ((1 - x**2 / a**2) * b**2) ** (1 / 2)
@@ -150,7 +150,7 @@ def spiral():
         x = (r / 2 * m.cos(r / k)) * a / b
         y = r / 2 * m.sin(r / k)
         points.append((xc + m.cos(fi) * x + m.sin(fi) * y,
-                  (yc - m.sin(fi) * x + m.cos(fi) * y)))
+                       (yc - m.sin(fi) * x + m.cos(fi) * y)))
         r += 0.01
     sp = g.polyline(points)
 
@@ -173,7 +173,7 @@ for i in range(20):
     L = random.randint(40, 120)
     x = random.randint(0, 500)
     y = random.randint(0, 500)
-    ellips1(x, y, L, l/4, -m.pi / 2 * (500 - x / 3)*(500 - y / 4))
+    ellips1(x, y, L, L/4, -m.pi / 2 * (500 - x / 3)*(500 - y / 4))
 
 # border
 g.brushColor('black')
