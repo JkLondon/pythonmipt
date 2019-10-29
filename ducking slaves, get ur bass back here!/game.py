@@ -1,7 +1,8 @@
 import tkinter as tk
 from random import randrange as rnd, choice
-import time
 import math as m
+import datetime as dt
+import csv
 
 
 root = tk.Tk()
@@ -9,6 +10,17 @@ root.geometry('800x600')
 tk.canv = tk.Canvas(root,bg='white')
 tk.canv.pack(fill=tk.BOTH,expand=1)
 colorsb = ['red','orange','yellow','green','blue']
+
+
+def file_reader(file_obj, path):
+    file_obj = open(path, 'r')
+    data = []
+    for i in file_obj:
+        print(i)
+        i = i.split(',')
+        i[0]=int(i[0])
+        data.append(i)
+    return file_obj, data
 
 
 def draw_ball(i):
@@ -21,7 +33,7 @@ def draw_ball(i):
     z=1
     if q:
         z=-1
-    angle[i] = (45*rnd(1,180) * z)%180
+    angle[i] = (rnd(1,180) * z)%180
     curcol = choice(colorsb)
     coors[i] = [x, y, r]
     colors[i] = curcol
@@ -57,9 +69,18 @@ def eliminate(i):
 
 
 def move():
-    global balls, coors, v, angle
+    global balls, coors, v, angle, name, data
     tk.canv.delete(tk.ALL)
-    
+    if (dt.datetime.now() - tx).seconds > delta:
+        data.append([score, name])
+        data = sorted(data)
+        path = 'results.csv'
+        file_obj = open(path, 'w')
+        for i in range(len(data)):
+            fstr = str(data[i][0]) + ',' + str(data[i][1])
+            file_obj.write(fstr + '\n')
+        file_obj.close()
+        return
     for i in range(n):
         for j in range(n):
             if i != j and m.sqrt((coors[i][0] - coors[j][0]) ** 2 +
@@ -158,6 +179,8 @@ def crosstheborder(i):
 
 
 
+print("Enter your name, dude!")
+name = input()
 n = int(input())
 balls = [0] * n
 colors = [0] * n
@@ -169,8 +192,11 @@ tk.canv.bind('<Button-1>', click)
 L = tk.Label(root, bg='black', fg='white', width=20)
 
 L.pack()
+tx = dt.datetime.now()
+delta = 30
 for i in range(n):
     draw_ball(i)
 move()
-
+f = None
+f, data = file_reader(f, 'results.csv')
 tk.mainloop()
