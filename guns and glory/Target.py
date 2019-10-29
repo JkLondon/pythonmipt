@@ -1,7 +1,6 @@
-from random import randrange as rnd, choice
-import tkinter as tk
-import math as m
 import Ball as B
+from random import randrange as rnd, choice
+
 
 class Target(B.Ball):
     def new_target(self, x):
@@ -23,6 +22,7 @@ class Target(B.Ball):
                 self.y + self.r,
                 fill=self.color
         )
+
     def move(self):
         """Движение вне поля, просто по траектории, так красивее"""
         self.y -= self.vy

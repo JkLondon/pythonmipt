@@ -70,6 +70,7 @@ def new_game(event=''):
         time.sleep(zzz)
         g1.targetting()
         g1.power_up()
+    G.bullet = 0
     canv.itemconfig(screen1, text='')
     root.after(1, new_game)
 
