@@ -34,8 +34,8 @@ def draw_ball(i):
     curcol = choice(colorsb)
     coors[i] = [x, y, r]
     colors[i] = curcol
-    balls[i] = tk.canv.create_oval(x - r, y - r, x + r, y + r, fill=
-    curcol, width=0)
+    balls[i] = tk.canv.create_oval(x - r, y - r, x + r, y + r,
+                                   fill=curcol, width=0)
 
 
 def move_ball(i):
@@ -44,8 +44,8 @@ def move_ball(i):
     y = coors[i][1]
     r = coors[i][2]
     curcol = colors[i]
-    balls[i] = tk.canv.create_oval(x - r, y - r, x + r, y + r, fill=
-    curcol, width=0)
+    balls[i] = tk.canv.create_oval(x - r, y - r, x + r, y + r,
+                                   fill=curcol, width=0)
 
 
 def click(event):
