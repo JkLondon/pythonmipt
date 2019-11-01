@@ -1,5 +1,7 @@
 import Ball as B
 
+points = 0
+
 
 class Bullet(B.Ball):
     def move(self):

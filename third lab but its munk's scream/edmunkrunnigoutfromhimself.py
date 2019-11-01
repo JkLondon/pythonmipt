@@ -36,7 +36,7 @@ def keyPressed(event):
         ex = 5
         ey = 0
     elif event.keycode == g.VK_SPACE:
-        updatemouth()  # вызов сатаны (если разкомментишь)
+        updatemouth()  # вызов сатаны (если раскомментишь)
         print("DUUUUUUUUCK")
         dx = 0
         dy = 0
@@ -137,7 +137,7 @@ def ellips():
     ell = g.polygon(L)
     fi += 0.02
 
-
+"""
 def spiral():
     global xc, yc, a, b, k, fi, sp
     g.penColor('black')
@@ -153,11 +153,11 @@ def spiral():
                        (yc - m.sin(fi) * x + m.cos(fi) * y)))
         r += 0.01
     sp = g.polyline(points)
-
+"""
 
 def bothofthem():
     ellips()
-    spiral()
+    # spiral()
 
 
 dx, dy, ex, ey = 0, 0, 0, 0

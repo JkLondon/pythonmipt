@@ -1,6 +1,8 @@
 import Ball as B
 from random import randrange as rnd, choice
 
+lives = 0
+
 
 class Target(B.Ball):
     def new_target(self, x):
