@@ -1,6 +1,7 @@
-import graph as g
 import math as m
 import random
+
+import graph as g
 
 
 def keyPressed(event):
@@ -111,11 +112,11 @@ def updatemouth():
 def ellips1(xc, yc, a, b, fi=0):
     L = []
     for x in range(-a, a):
-        y = ((1 - x**2 / a**2) * b**2) ** (1/2)
+        y = ((1 - x ** 2 / a ** 2) * b ** 2) ** (1 / 2)
         L.append((xc + m.cos(fi) * x + m.sin(fi) * y,
                   (yc - m.sin(fi) * x + m.cos(fi) * y)))
     for x in range(a, -a, -1):
-        y = ((1 - x**2 / a**2) * b**2) ** (1/2)
+        y = ((1 - x ** 2 / a ** 2) * b ** 2) ** (1 / 2)
         L.append((xc + m.cos(fi) * x + m.sin(fi) * (-y),
                   (yc - m.sin(fi) * x + m.cos(fi) * (-y))))
     g.polygon(L)
@@ -127,15 +128,16 @@ def ellips():
     g.deleteObject(ell)
     L = []
     for x in range(-a, a):
-        y = ((1 - x**2 / a**2) * b**2) ** (1 / 2)
+        y = ((1 - x ** 2 / a ** 2) * b ** 2) ** (1 / 2)
         L.append((xc + m.cos(fi) * x + m.sin(fi) * y,
                   (yc - m.sin(fi) * x + m.cos(fi) * y)))
     for x in range(a, -a, -1):
-        y = ((1 - x**2 / a**2) * b**2) ** (1 / 2)
+        y = ((1 - x ** 2 / a ** 2) * b ** 2) ** (1 / 2)
         L.append((xc + m.cos(fi) * x + m.sin(fi) * (-y),
                   (yc - m.sin(fi) * x + m.cos(fi) * (-y))))
     ell = g.polygon(L)
     fi += 0.02
+
 
 """
 def spiral():
@@ -155,13 +157,13 @@ def spiral():
     sp = g.polyline(points)
 """
 
+
 def bothofthem():
     ellips()
     # spiral()
 
 
 dx, dy, ex, ey = 0, 0, 0, 0
-
 
 # sea
 g.penColor(36, 75, 72)
@@ -173,12 +175,11 @@ for i in range(20):
     L = random.randint(40, 120)
     x = random.randint(0, 500)
     y = random.randint(0, 500)
-    ellips1(x, y, L, L/4, -m.pi / 2 * (500 - x / 3)*(500 - y / 4))
+    ellips1(x, y, L, L / 4, -m.pi / 2 * (500 - x / 3) * (500 - y / 4))
 
 # border
 g.brushColor('black')
 g.rectangle(0, 500, 500, 600)
-
 
 # floor
 g.penColor(140, 129, 46)
