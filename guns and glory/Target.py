@@ -1,5 +1,6 @@
-import Ball as B
 from random import randrange as rnd, choice
+
+import Ball as B
 
 lives = 0
 
@@ -18,11 +19,11 @@ class Target(B.Ball):
         self.canv.itemconfig(self.id, fill=color)
         self.canv.delete(self.id)
         self.id = self.canv.create_oval(
-                self.x - self.r,
-                self.y - self.r,
-                self.x + self.r,
-                self.y + self.r,
-                fill=self.color
+            self.x - self.r,
+            self.y - self.r,
+            self.x + self.r,
+            self.y + self.r,
+            fill=self.color
         )
 
     def move(self):
@@ -30,11 +31,11 @@ class Target(B.Ball):
         self.y -= self.vy
         self.canv.delete(self.id)
         self.id = self.canv.create_oval(
-                self.x - self.r,
-                self.y - self.r,
-                self.x + self.r,
-                self.y + self.r,
-                fill=self.color
+            self.x - self.r,
+            self.y - self.r,
+            self.x + self.r,
+            self.y + self.r,
+            fill=self.color
         )
         if self.y + self.r > 600 or self.y - self.r < 0:
             self.vy *= -1

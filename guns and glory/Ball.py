@@ -1,5 +1,4 @@
 ﻿import math as m
-from random import randrange as rnd, choice
 
 
 class Ball():

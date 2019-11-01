@@ -1,44 +1,43 @@
+import csv
+import datetime as dt
+import math as m
 import tkinter as tk
 from random import randrange as rnd, choice
-import math as m
-import datetime as dt
-import csv
-
 
 root = tk.Tk()
 root.geometry('800x600')
-tk.canv = tk.Canvas(root,bg='white')
-tk.canv.pack(fill=tk.BOTH,expand=1)
-colorsb = ['red','orange','yellow','green','blue']
+tk.canv = tk.Canvas(root, bg='white')
+tk.canv.pack(fill=tk.BOTH, expand=1)
+colorsb = ['red', 'orange', 'yellow', 'green', 'blue']
 
 
 def file_reader(file_obj, path):
     file_obj = open(path, 'r')
     data = []
     for i in file_obj:
-        print(i)
         i = i.split(',')
-        i[0]=int(i[0])
+        i[0] = int(i[0])
         data.append(i)
     return file_obj, data
 
 
 def draw_ball(i):
     global balls, coors, colors, v, angle
-    x = rnd(10,700)
-    y = rnd(10,550)
-    r = rnd(30,50)
-    v[i] = rnd(1,5)
-    q = rnd(0,2)
-    z=1
+    x = rnd(10, 700)
+    y = rnd(10, 550)
+    r = rnd(30, 50)
+    v[i] = rnd(1, 5)
+    q = rnd(0, 2)
+    z = 1
     if q:
-        z=-1
-    angle[i] = (rnd(1,180) * z)%180
+        z = -1
+    angle[i] = (rnd(1, 180) * z) % 180
     curcol = choice(colorsb)
     coors[i] = [x, y, r]
     colors[i] = curcol
-    balls[i] = tk.canv.create_oval(x - r,y - r, x + r, y + r, fill =
-                                       curcol, width = 0)
+    balls[i] = tk.canv.create_oval(x - r, y - r, x + r, y + r, fill=
+    curcol, width=0)
+
 
 def move_ball(i):
     global balls, coors, colors, v, angle
@@ -46,10 +45,10 @@ def move_ball(i):
     y = coors[i][1]
     r = coors[i][2]
     curcol = colors[i]
-    balls[i] = tk.canv.create_oval(x - r,y - r, x + r, y + r, fill =
-                                       curcol, width = 0)
+    balls[i] = tk.canv.create_oval(x - r, y - r, x + r, y + r, fill=
+    curcol, width=0)
 
-    
+
 def click(event):
     my_x, my_y = event.x, event.y
     for i in range(len(balls)):
@@ -57,7 +56,7 @@ def click(event):
         if m.sqrt((x - my_x) ** 2 + (y - my_y) ** 2) <= r:
             eliminate(i)
             break
-    
+
 
 def eliminate(i):
     global balls, coors, score, L
@@ -78,14 +77,14 @@ def move():
         file_obj = open(path, 'w')
         for i in range(len(data)):
             fstr = str(data[i][0]) + ',' + str(data[i][1])
-            file_obj.write(fstr + '\n')
+            file_obj.write(fstr + '"')
         file_obj.close()
         return
     for i in range(n):
         for j in range(n):
             if i != j and m.sqrt((coors[i][0] - coors[j][0]) ** 2 +
-            (coors[i][1] - coors[j][1]) ** 2) <= coors[i][2] + coors[j][2]:
-                collision(i,j)
+                                                 (coors[i][1] - coors[j][1]) ** 2) <= coors[i][2] + coors[j][2]:
+                collision(i, j)
     for i in range(n):
         coors[i][0] += v[i] * m.cos(angle[i] * (m.pi / 180))
         coors[i][1] += v[i] * m.sin(angle[i] * (m.pi / 180))
@@ -96,10 +95,10 @@ def move():
         coors[i][0] += v[i] * m.cos(angle[i] * (m.pi / 180))
         coors[i][1] += v[i] * m.sin(angle[i] * (m.pi / 180))
         move_ball(i)
-    root.after(4,move)
+    root.after(4, move)
 
 
-def collision(i,j):
+def collision(i, j):
     global angle, coors
     m1 = coors[i][2] ** 2
     m2 = coors[j][2] ** 2
@@ -119,11 +118,11 @@ def collision(i,j):
     aL1 *= m.pi / 180
     aL2 *= m.pi / 180
     if m.cos(aL2) == 0:
-        b1 = m.pi/2
+        b1 = m.pi / 2
     else:
         b1 = m.atan((m1 * v1 * m.sin(aL1)) / (m2 * v2 * m.cos(aL2)))
     if m.cos(aL1) == 0:
-        b2 = m.pi/2
+        b2 = m.pi / 2
     else:
         b2 = m.atan((m2 * v2 * m.sin(aL2)) / (m1 * v1 * m.cos(aL1)))
     if b1 == 0 and m.cos(aL2) < 0:
@@ -144,7 +143,7 @@ def collision(i,j):
     delt = coors[i][2] + coors[j][2] - m.sqrt((c1x - c2x) ** 2 + (c1y - c2y)
                                               ** 2)
     if c2y != c1y:
-        coors[i][1] += delt * m.sin(fi) * (c1y - c2y) / abs(c1y - c2y) / 2        
+        coors[i][1] += delt * m.sin(fi) * (c1y - c2y) / abs(c1y - c2y) / 2
         coors[j][1] -= delt * m.sin(fi) * (c1y - c2y) / abs(c1y - c2y) / 2
     if c1x != c2x:
         coors[i][0] += delt * m.cos(fi) * (c1x - c2x) / abs(c1x - c2x) / 2
@@ -178,7 +177,6 @@ def crosstheborder(i):
             angle[i] = abs(angle[i]) % 180
 
 
-
 print("Enter your name, dude!")
 name = input()
 n = int(input())
@@ -187,7 +185,7 @@ colors = [0] * n
 coors = [[0] * 3] * n
 v = [0] * n
 angle = [0] * n
-score = 0    
+score = 0
 tk.canv.bind('<Button-1>', click)
 L = tk.Label(root, bg='black', fg='white', width=20)
 

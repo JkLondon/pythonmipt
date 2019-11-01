@@ -1,6 +1,6 @@
 ﻿import math as m
-import Bullet as Bl
 
+import Bullet as Bl
 
 bullet = 0
 balls = []
@@ -8,6 +8,7 @@ balls = []
 
 class Gun():
     """Создание пушки"""
+
     def __init__(self, canv):
         self.canv = canv
         self.f2_power = 10
@@ -49,9 +50,9 @@ class Gun():
         else:
             self.canv.itemconfig(self.id, fill='black')
         self.canv.coords(self.id, 20, 450,
-                        20 + max(self.f2_power, 20) * m.cos(self.an),
-                        450 + max(self.f2_power, 20) * m.sin(self.an)
-                        )
+                         20 + max(self.f2_power, 20) * m.cos(self.an),
+                         450 + max(self.f2_power, 20) * m.sin(self.an)
+                         )
 
     def power_up(self):
         """Увеличение мощности, регулируется долгим нажатием"""
