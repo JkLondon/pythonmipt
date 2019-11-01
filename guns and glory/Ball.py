@@ -1,8 +1,10 @@
 ﻿import math as m
+from random import choice
 
 
 class Ball():
     """Батя пули и цели"""
+
     def __init__(self, canv):
         """ Конструктор класса Ball
         Args:
@@ -22,7 +24,7 @@ class Ball():
     def hittest(self, obj):
         """Проверка столкновения пули и цели"""
         if m.sqrt((self.x - obj.x) ** 2 +
-                  (self.y - obj.y) ** 2) > self.r + obj.r:
+                                  (self.y - obj.y) ** 2) > self.r + obj.r:
             return False
         else:
             return True

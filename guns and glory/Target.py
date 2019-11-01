@@ -1,5 +1,4 @@
-from random import randrange as rnd, choice
-
+from random import randrange as rnd
 import Ball as B
 
 lives = 0

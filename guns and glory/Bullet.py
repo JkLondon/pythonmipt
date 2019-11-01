@@ -11,8 +11,8 @@ class Bullet(B.Ball):
         self.y -= self.vy
         self.canv.delete(self.id)
         self.id = self.canv.create_oval(self.x - self.r, self.y - self.r,
-                                       self.x + self.r, self.y + self.r,
-                                       fill=self.color)
+                                        self.x + self.r, self.y + self.r,
+                                        fill=self.color)
         if self.y + self.r > 600:
             self.vy *= -1
             zy = abs(self.vy) / self.vy
