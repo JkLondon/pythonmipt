@@ -1,4 +1,3 @@
-import csv
 import datetime as dt
 import math as m
 import tkinter as tk
@@ -83,7 +82,8 @@ def move():
     for i in range(n):
         for j in range(n):
             if i != j and m.sqrt((coors[i][0] - coors[j][0]) ** 2 +
-                                                 (coors[i][1] - coors[j][1]) ** 2) <= coors[i][2] + coors[j][2]:
+                                 (coors[i][1] - coors[j][1]) ** 2) <= \
+                            coors[i][2] + coors[j][2]:
                 collision(i, j)
     for i in range(n):
         coors[i][0] += v[i] * m.cos(angle[i] * (m.pi / 180))
